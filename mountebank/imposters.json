@@ -46,6 +46,22 @@
               ]
             }
           ]
+        },
+        {
+          "name": "shipping kerry",
+          "predicates": [
+            {
+              "equals": {
+                "method": "POST",
+                "path": "/shipping"
+              }
+            }
+          ],
+          "responses": [
+            {
+              "inject": "<%-stringify(filename, 'response.js') %>"
+            }
+          ]
         }
       ]
     }

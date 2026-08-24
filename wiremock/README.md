@@ -60,3 +60,19 @@ Response Body:
   "transaction_id": "TOY202002021525"
 }
 ```
+
+### Shipping
+
+API Endpoint: /shipping
+
+Method: POST
+
+Response Status: 200
+
+Response Body:
+
+```json
+{
+  "tracking_number": "${SHIPPING_METHOD}-${RANDOM-NUMBER}"
+}
+```

@@ -1,0 +1,11 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPath": "/shipping"
+  },
+  "response": {
+    "status": 200,
+    "transformers": ["shipping-response"]
+  }
+}
