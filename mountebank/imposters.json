@@ -4,7 +4,7 @@
       "port": 8882,
       "protocol": "http",
       "defaultResponse": {
-        "statusCode": 400,
+        "statusCode": 404,
         "headers": {
           "Connection": "Keep-Alive",
           "Content-Length": 0
