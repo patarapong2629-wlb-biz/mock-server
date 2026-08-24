@@ -1,0 +1,12 @@
+services:
+  mountebank-server:
+    build:
+      context: mountebank
+    ports:
+      - "8882:8882"
+
+  wiremock-server:
+    build:
+      context: wiremock
+    ports:
+      - "8883:8080"

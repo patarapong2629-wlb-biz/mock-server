@@ -1,0 +1,15 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPath": "/payment/visa"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": "{\"status\":\"success\",\"fee\":0.0,\"available_balance\":2401.98,\"authorized\":\"{{now format=\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" timezone=\"UTC\"}}\",\"transaction_id\":\"TOY202002021525\"}",
+    "fixedDelayMilliseconds": 500
+  }
+}
