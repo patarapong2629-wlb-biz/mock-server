@@ -24,15 +24,27 @@ public class ShippingResponseTransformer implements ResponseTransformerV2 {
     String requestBody = serveEvent.getRequest().getBodyAsString();
     Matcher matcher = SHIPPING_METHOD_ID.matcher(requestBody);
     String methodId = matcher.find() ? matcher.group(1) : null;
-    String carrier = CARRIER_BY_METHOD_ID.getOrDefault(methodId, "undefined");
-    long trackingSuffix = ThreadLocalRandom.current().nextLong(1_000_000_000L);
+    String carrier = CARRIER_BY_METHOD_ID.get(methodId);
 
+    HttpHeaders headers =
+        new HttpHeaders(new HttpHeader("Content-Type", "application/json; charset=utf-8"));
+
+    if (carrier == null) {
+      return Response.Builder.like(response)
+          .but()
+          .status(404)
+          .headers(headers)
+          .body("{\"error\":\"Shipping method not found\"}")
+          .build();
+    }
+
+    long trackingSuffix = ThreadLocalRandom.current().nextLong(1_000_000_000L);
     String body = String.format("{\"tracking_number\":\"%s-%d\"}", carrier, trackingSuffix);
 
     return Response.Builder.like(response)
         .but()
         .status(200)
-        .headers(new HttpHeaders(new HttpHeader("Content-Type", "application/json; charset=utf-8")))
+        .headers(headers)
         .body(body)
         .build();
   }
