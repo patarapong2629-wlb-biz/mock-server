@@ -6,6 +6,7 @@ This repo is for practicing on how to create mock API.
 - [WireMock](./wiremock/)
 - [Smocker](./smocker/)
 - [Prism](./prism/)
+- [MockServer](./mockserver/)
 
 ## Getting Started
 

@@ -1,0 +1,22 @@
+[
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/payment/visa"
+    },
+    "httpResponseTemplate": {
+      "templateType": "JAVASCRIPT",
+      "template": "return { statusCode: 200, headers: {'Content-Type': ['application/json; charset=utf-8']}, body: JSON.stringify({status: 'success', fee: 0.0, available_balance: 2401.98, authorized: new Date().toISOString(), transaction_id: 'TOY202002021525'}), delay: {timeUnit: 'MILLISECONDS', value: 500} };"
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/shipping"
+    },
+    "httpResponseTemplate": {
+      "templateType": "JAVASCRIPT",
+      "template": "var body = JSON.parse(request.body); var mapper = {1: 'KR', 2: 'TH', 3: 'LM'}; var carrier = mapper[body.shipping_method_id]; if (!carrier) { return { statusCode: 404, headers: {'Content-Type': ['application/json; charset=utf-8']}, body: JSON.stringify({error: 'Shipping method not found'}) }; } var num = Math.floor(Math.random() * 1000000000); return { statusCode: 200, headers: {'Content-Type': ['application/json; charset=utf-8']}, body: JSON.stringify({tracking_number: carrier + '-' + num}) };"
+    }
+  }
+]
