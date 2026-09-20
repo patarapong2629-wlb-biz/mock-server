@@ -1,0 +1,43 @@
+- request:
+    path:
+      matcher: ShouldMatch
+      value: ".*"
+  response:
+    status: 404
+    headers:
+      Connection: [Keep-Alive]
+
+- request:
+    method: POST
+    path: /payment/visa
+  dynamic_response:
+    engine: go_template_yaml
+    script: |
+      status: 200
+      headers:
+        Content-Type: ["application/json; charset=utf-8"]
+      body: >
+        {"status": "success", "fee": 0.0, "available_balance": 2401.98, "authorized": "{{ date "2006-01-02T15:04:05.000Z" now }}", "transaction_id": "TOY202002021525"}
+      delay: 500ms
+
+- request:
+    method: POST
+    path: /shipping
+  dynamic_response:
+    engine: go_template_yaml
+    script: |
+      {{ $mapper := dict "1" "KR" "2" "TH" "3" "LM" }}
+      {{ $method := get $mapper (toString .Request.Body.shipping_method_id) }}
+      {{ if $method }}
+      status: 200
+      headers:
+        Content-Type: ["application/json; charset=utf-8"]
+      body: >
+        {"tracking_number": "{{ $method }}-{{ randInt 0 1000000000 }}"}
+      {{ else }}
+      status: 404
+      headers:
+        Content-Type: ["application/json; charset=utf-8"]
+      body: >
+        {"error": "Shipping method not found"}
+      {{ end }}

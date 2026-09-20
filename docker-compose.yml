@@ -10,3 +10,10 @@ services:
       context: wiremock
     ports:
       - "8883:8080"
+
+  smocker-server:
+    build:
+      context: smocker
+    ports:
+      - "8884:8080"
+      - "8885:8081"
