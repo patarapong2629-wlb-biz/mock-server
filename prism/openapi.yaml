@@ -1,0 +1,58 @@
+openapi: "3.0.3"
+info:
+  title: Mock APIs
+  version: "1.0.0"
+paths:
+  /payment/visa:
+    post:
+      operationId: paymentVisa
+      responses:
+        "200":
+          description: Successful payment
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, fee, available_balance, authorized, transaction_id]
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  fee:
+                    type: number
+                    example: 0.0
+                  available_balance:
+                    type: number
+                    example: 2401.98
+                  authorized:
+                    type: string
+                    format: date-time
+                  transaction_id:
+                    type: string
+                    example: TOY202002021525
+  /shipping:
+    post:
+      operationId: shipping
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [shipping_method_id]
+              properties:
+                shipping_method_id:
+                  type: integer
+                  enum: [1, 2, 3]
+      responses:
+        "200":
+          description: Shipment created
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [tracking_number]
+                properties:
+                  tracking_number:
+                    type: string
+                    example: KR-123456789

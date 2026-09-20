@@ -3,17 +3,23 @@ services:
     build:
       context: mountebank
     ports:
-      - "8882:8882"
+      - '8882:8882'
 
   wiremock-server:
     build:
       context: wiremock
     ports:
-      - "8883:8080"
+      - '8883:8080'
 
   smocker-server:
     build:
       context: smocker
     ports:
-      - "8884:8080"
-      - "8885:8081"
+      - '8884:8080'
+      - '8885:8081'
+
+  prism-server:
+    build:
+      context: prism
+    ports:
+      - '8886:4010'

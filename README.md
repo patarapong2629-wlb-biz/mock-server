@@ -5,6 +5,7 @@ This repo is for practicing on how to create mock API.
 - [Mountebank](./mountebank/)
 - [WireMock](./wiremock/)
 - [Smocker](./smocker/)
+- [Prism](./prism/)
 
 ## Getting Started
 
