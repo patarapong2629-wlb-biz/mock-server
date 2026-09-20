@@ -23,10 +23,15 @@ services:
       context: prism
     ports:
       - '8886:4010'
-      - '8886:4010'
 
   mockserver-server:
     build:
       context: mockserver
     ports:
       - '8887:1080'
+
+  node-red-server:
+    build:
+      context: node-red
+    ports:
+      - '8889:1880'
